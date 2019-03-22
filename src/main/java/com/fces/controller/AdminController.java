@@ -1,12 +1,14 @@
 package com.fces.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.druid.util.StringUtils;
 import com.fces.domain.Clazz;
 import com.fces.domain.Teacher;
 import com.fces.service.ClazzService;
 import com.fces.service.TeacherService;
+import com.fces.util.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import com.fces.domain.Admin;
 import com.fces.service.AdminService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -38,17 +41,8 @@ public class AdminController {
 	}
 
     @RequestMapping("/class")
-    public String classManage(HttpServletRequest request, Model model) {
-	    String message = (String) request.getSession().getAttribute("message");
-	    if (message != null) {
-	        model.addAttribute("message", message);
-	        request.getSession().removeAttribute("message");
-        }
-        String error = (String) request.getSession().getAttribute("error");
-        if (error != null) {
-            model.addAttribute("error", error);
-            request.getSession().removeAttribute("error");
-        }
+    public String classManage(HttpSession session, Model model) {
+        ModelUtil.setModelValue(session, model);
         List<Clazz> clazzList = clazzService.getAllClazz();
         model.addAttribute("classes", clazzList);
         return "admin/classManage";
@@ -85,23 +79,19 @@ public class AdminController {
 	}
 
     @RequestMapping(value = "/class/update", method=RequestMethod.POST)
-    public String classUpdate(Clazz clazz, Model model, HttpServletRequest request) {
+    public String classUpdate(Clazz clazz, HttpSession session) {
         System.out.println("admin class update clazz " + clazz.toString());
         if (clazz.getId()!= null && !StringUtils.equals(clazz.getId(), "")) {
             if (clazzService.updateClazz(clazz) != null) {
-                request.getSession().setAttribute("message", "修改成功！");
-//                model.addAttribute("message", "修改成功！");
+                session.setAttribute("message", "修改成功！");
             } else {
-                request.getSession().setAttribute("error", "修改失败！");
-//                model.addAttribute("error", "修改失败！");
+                session.setAttribute("error", "修改失败！");
             }
         } else {
             if (clazzService.createClazz(clazz) != null) {
-                request.getSession().setAttribute("message", "添加成功！");
-//                model.addAttribute("message", "添加成功！");
+                session.setAttribute("message", "添加成功！");
             } else {
-                request.getSession().setAttribute("error", "添加失败！");
-//                model.addAttribute("error", "添加失败！");
+                session.setAttribute("error", "添加失败！");
             }
         }
         return "redirect:/admin/class";
