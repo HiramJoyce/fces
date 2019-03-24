@@ -24,25 +24,25 @@
 <body>
 <div class="page-container">
     <div class="wrapper ">
-        <div class="sidebar" data-color="orange">
+        <div class="sidebar" data-color="blue">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
             <div class="logo">
                 <a href="#" class="simple-text">
-                    翻转课堂管理系统
+                    翻转课堂教师系统
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
-                        <a href="${ctx}/admin/class">
+                        <a href="${ctx}/teacher/class">
                             <i class="now-ui-icons design_app"></i>
                             <p>课堂管理</p>
                         </a>
                     </li>
                     <li>
-                        <a href="${ctx}/admin/student">
+                        <a href="${ctx}/teacher/student">
                             <i class="now-ui-icons education_atom"></i>
                             <p>学生管理</p>
                         </a>
@@ -62,7 +62,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo">课堂管理</a>
+                        <a class="navbar-brand" href="#pablo">学生管理</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,11 +98,13 @@
 
             <div class="content">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="card card-chart">
-                            <form id="clazz" action="${ctx}/admin/class/update" method="post" accept-charset="UTF-8">
+                            <form id="clazz" action="${ctx}/teacher/student/score" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="studentId" value="${student.id}">
+                                <input type="hidden" name="clazzId" value="${clazz.id}">
                                 <div class="card-header">
-                                    <h4 class="card-title"> 课堂信息</h4>
+                                    <h4 class="card-title"> 教师评分</h4>
                                     <div class="dropdown">
                                         <button type="submit"
                                                 class="btn btn-round btn-success btn-simple btn-icon no-caret">
@@ -116,111 +118,58 @@
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <label>课程名</label>
-                                                <input type="text" name="clazzName" class="form-control"
+                                                <input type="text" name="clazzName" class="form-control" disabled
                                                        placeholder="课程名"
                                                        value="${clazz.clazzName}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3 pr-1">
+                                        <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                 <label>开始时间</label>
-                                                <input type="text" name="startTime" class="form-control"
+                                                <input type="text" name="startTime" class="form-control" disabled
                                                        placeholder="开始时间"
                                                        value="<fmt:formatDate value="${clazz.startTime}" pattern="yyyy-MM-dd"/>">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 pr-1">
+                                        <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                 <label>结束时间</label>
-                                                <input type="text" name="endTime" class="form-control"
+                                                <input type="text" name="endTime" class="form-control" disabled
                                                        placeholder="结束时间"
                                                        value="<fmt:formatDate value="${clazz.endTime}" pattern="yyyy-MM-dd"/>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3 pr-1">
+                                        <div class="col-md-5 pr-1">
                                             <div class="form-group">
-                                                <label for="teacherId">教师</label>
-                                                <select name="teacherId" id="teacherId" class="form-control">
-                                                    <c:forEach items="${teachers}" var="teacher">
-                                                        <option value="${teacher.id}" ${teacher.id == clazz.teacherId ? "selected" : ""}>${teacher.realName}</option>
-                                                    </c:forEach>
-                                                </select>
+                                                <label>学生姓名</label>
+                                                <input type="text" name="studentName" class="form-control" disabled
+                                                       placeholder="学生姓名"
+                                                       value="${student.realName}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>学号</label>
+                                                <input type="text" name="studentNum" class="form-control" disabled placeholder="学号"
+                                                       value="${student.studentNum}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>评分</label>
+                                                <input type="text" name="score" class="form-control"
+                                                       placeholder="分数">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card card-plain">
-                            <div class="card-header">
-                                <h4 class="card-title"> 教师名单</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead class=" text-primary">
-                                        <th>
-                                            姓名
-                                        </th>
-                                        <th>
-                                            教职工编号
-                                        </th>
-                                        <th>
-                                            姓名
-                                        </th>
-                                        <th>
-                                            教职工编号
-                                        </th>
-                                        <th>
-                                            姓名
-                                        </th>
-                                        <th>
-                                            教职工编号
-                                        </th>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach var="x" begin="0" end="${teachers.size()}" step="3"
-                                                   varStatus="statu">
-                                            <tr>
-                                                <c:if test="${teachers[x] != null}">
-                                                    <td>
-                                                        <span>${teachers[x].realName}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>${teachers[x].teacherNum}</span>
-                                                    </td>
-                                                </c:if>
-                                                <c:if test="${teachers[x + 1] != null}">
-                                                    <td>
-                                                        <span>${teachers[x + 1].realName}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>${teachers[x + 1].teacherNum}</span>
-                                                    </td>
-                                                </c:if>
-                                                <c:if test="${teachers[x + 2] != null}">
-                                                    <td>
-                                                        <span>${teachers[x + 2].realName}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>${teachers[x + 2].teacherNum}</span>
-                                                    </td>
-                                                </c:if>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

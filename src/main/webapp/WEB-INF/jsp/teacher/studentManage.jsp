@@ -27,19 +27,19 @@
 -->
         <div class="logo">
             <a href="#" class="simple-text">
-                翻转课堂管理系统
+                翻转课堂教师系统
             </a>
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="${ctx}/admin/class">
+                    <a href="${ctx}/teacher/class">
                         <i class="now-ui-icons design_app"></i>
-                        <p>课堂管理</p>
+                        <p>我的课堂</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="${ctx}/admin/student">
+                    <a href="${ctx}/teacher/student">
                         <i class="now-ui-icons education_atom"></i>
                         <p>学生管理</p>
                     </a>
@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-chart">
-                        <form id="student" action="${ctx}/admin/student/delete" method="post" accept-charset="UTF-8">
+                        <form id="student" action="${ctx}/teacher/student/delete" method="post" accept-charset="UTF-8">
                             <div class="card-header">
                                 <h4 class="card-title"> 学生管理</h4>
                                 <div class="dropdown">
@@ -105,7 +105,7 @@
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
                                     </button>
                                     <button type="button"
-                                            onclick="window.location.href='${ctx}/admin/student/update'"
+                                            onclick="window.location.href='${ctx}/teacher/student/update'"
                                             class="btn btn-round btn-success btn-simple btn-icon no-caret">
                                         <i class="now-ui-icons ui-1_simple-add"></i>
                                     </button>
@@ -168,7 +168,7 @@
                                                     <button type="button" rel="tooltip" title=""
                                                             class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
                                                             data-original-title="Edit Task"
-                                                            onclick="window.location.href='${ctx}/admin/student/update?id=${student.id}'">
+                                                            onclick="window.location.href='${ctx}/teacher/student/update?id=${student.id}'">
                                                         <i class="now-ui-icons ui-2_settings-90"></i>
                                                     </button>
                                                     <button type="button" rel="tooltip" title=""
@@ -253,7 +253,7 @@
                                     '                                                    <button type="button" rel="tooltip" title=""\n' +
                                     '                                                            class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"\n' +
                                     '                                                            data-original-title="Edit Task"\n' +
-                                    '                                                            onclick="window.location.href=\'${ctx}/admin/student/update?id=' + res.data[i].id + '\'">\n' +
+                                    '                                                            onclick="window.location.href=\'${ctx}/teacher/student/update?id=' + res.data[i].id + '\'">\n' +
                                     '                                                        <i class="now-ui-icons ui-2_settings-90"></i>\n' +
                                     '                                                    </button>\n' +
                                     '                                                    <button type="button" rel="tooltip" title=""\n' +
