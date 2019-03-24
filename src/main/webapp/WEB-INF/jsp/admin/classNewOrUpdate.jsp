@@ -81,7 +81,7 @@
                         </form>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="${ctx}/logout">
                                     <i class="now-ui-icons users_single-02"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Account</span>
@@ -102,7 +102,7 @@
                         <div class="card card-chart">
                             <form id="clazz" action="${ctx}/admin/class/update" method="post" accept-charset="UTF-8">
                                 <div class="card-header">
-                                    <h4 class="card-title"> 课堂管理</h4>
+                                    <h4 class="card-title"> 课堂信息</h4>
                                     <div class="dropdown">
                                         <button type="submit"
                                                 class="btn btn-round btn-success btn-simple btn-icon no-caret">
@@ -234,13 +234,5 @@
 <script src="${ctx}/resource/twts_122_now-ui/assets/js/core/bootstrap.min.js"></script>
 <script src="${ctx}/resource/twts_122_now-ui/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <script src="${ctx}/resource/twts_122_now-ui/assets/js/now-ui-dashboard.js?v=1.0.1"></script>
-<script>
-    $(function () {
-        $(':radio').click(function () {
-            var checkValue = $(this).val();
-            alert(checkValue + $(this).text);
-        });
-    })
-</script>
 </body>
 </html>

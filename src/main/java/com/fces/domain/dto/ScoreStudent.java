@@ -5,8 +5,10 @@ public class ScoreStudent {
 	private String clazzId;
 	private String clazzName;
 	private String fromStudentId;
+	private String fromStudentNum;
 	private String fromStudentName;
 	private String toStudentId;
+	private String toStudentNum;
 	private String toStudentName;
 	private double score;
 	public String getId() {
@@ -57,10 +59,36 @@ public class ScoreStudent {
 	public void setScore(double score) {
 		this.score = score;
 	}
+
+	public String getFromStudentNum() {
+		return fromStudentNum;
+	}
+
+	public void setFromStudentNum(String fromStudentNum) {
+		this.fromStudentNum = fromStudentNum;
+	}
+
+	public String getToStudentNum() {
+		return toStudentNum;
+	}
+
+	public void setToStudentNum(String toStudentNum) {
+		this.toStudentNum = toStudentNum;
+	}
+
 	@Override
 	public String toString() {
-		return "ScoreStudent [id=" + id + ", clazzId=" + clazzId + ", clazzName=" + clazzName + ", fromStudentId="
-				+ fromStudentId + ", fromStudentName=" + fromStudentName + ", toStudentId=" + toStudentId
-				+ ", toStudentName=" + toStudentName + ", score=" + score + "]";
+		return "ScoreStudent{" +
+				"id='" + id + '\'' +
+				", clazzId='" + clazzId + '\'' +
+				", clazzName='" + clazzName + '\'' +
+				", fromStudentId='" + fromStudentId + '\'' +
+				", fromStudentNum='" + fromStudentNum + '\'' +
+				", fromStudentName='" + fromStudentName + '\'' +
+				", toStudentId='" + toStudentId + '\'' +
+				", toStudentNum='" + toStudentNum + '\'' +
+				", toStudentName='" + toStudentName + '\'' +
+				", score=" + score +
+				'}';
 	}
 }

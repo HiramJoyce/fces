@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${ctx}/resource/azmind_3_xd/assets/css/reset.css">
     <link rel="stylesheet" href="${ctx}/resource/azmind_3_xd/assets/css/supersized.css">
     <link rel="stylesheet" href="${ctx}/resource/azmind_3_xd/assets/css/style.css">
+    <link href="${ctx}/resource/twts_122_now-ui/assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet"/>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -36,5 +37,31 @@
 <script src="${ctx}/resource/azmind_3_xd/assets/js/supersized.3.2.7.min.js"></script>
 <script src="${ctx}/resource/azmind_3_xd/assets/js/supersized-init.js"></script>
 <script src="${ctx}/resource/azmind_3_xd/assets/js/scripts.js"></script>
+<script src="${ctx}/resource/twts_122_now-ui/assets/js/plugins/bootstrap-notify.js"></script>
+<script>
+    $(function () {
+        if ('${requestScope.message}' != null && '${requestScope.message}' !== '') {
+            showNotification('${requestScope.message}', 'success');
+        }
+        if ('${requestScope.error}' != null && '${requestScope.error}' !== '') {
+            showNotification('${requestScope.error}', 'danger');
+        }
+    });
+
+    function showNotification(msg, type) {
+        color = type;
+        $.notify({
+            icon: "now-ui-icons ui-1_bell-53",
+            message: msg
+        }, {
+            type: color,
+            timer: 8000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+    }
+</script>
 </body>
 </html>

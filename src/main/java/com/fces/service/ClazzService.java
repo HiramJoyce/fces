@@ -12,4 +12,10 @@ public interface ClazzService {
 	Clazz updateClazz(Clazz clazz);
 
 	Clazz createClazz(Clazz clazz);
+
+    void deleteClazz(String id1);
+
+	List<Clazz> getClazzesByTeacherId(String teacherId);
+
+	List<Clazz> getClazzByStudentId(String studentId);
 }

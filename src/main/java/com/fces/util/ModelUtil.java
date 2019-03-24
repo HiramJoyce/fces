@@ -12,7 +12,7 @@ public class ModelUtil {
         String value;
         for (String type : types) {
             valueObj = session.getAttribute(type);
-            if (valueObj != null && StringUtils.equals(value = (String) valueObj, "")) {
+            if (valueObj != null && !StringUtils.equals(value = (String) valueObj, "")) {
                 model.addAttribute(type, value);
                 session.removeAttribute(type);
             }

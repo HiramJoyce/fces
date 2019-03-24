@@ -15,4 +15,10 @@ public interface ClazzDao {
 	int updateClazz(Clazz clazz);
 
 	int insertClazz(Clazz clazz);
+
+	void deleteClazzById(String id);
+
+    List<Clazz> selectClazzesByTeacherId(String teacherId);
+
+    List<Clazz> selectClazzesByStudentId(String studentId);
 }

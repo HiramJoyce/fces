@@ -33,4 +33,19 @@ public class ClazzServiceImpl implements ClazzService {
 		return clazzDao.insertClazz(clazz) > 0 ? clazz : null;
 	}
 
+	@Override
+	public void deleteClazz(String id) {
+		clazzDao.deleteClazzById(id);
+	}
+
+	@Override
+	public List<Clazz> getClazzesByTeacherId(String teacherId) {
+		return clazzDao.selectClazzesByTeacherId(teacherId);
+	}
+
+	@Override
+	public List<Clazz> getClazzByStudentId(String studentId) {
+		return clazzDao.selectClazzesByStudentId(studentId);
+	}
+
 }

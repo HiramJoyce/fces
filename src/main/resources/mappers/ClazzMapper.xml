@@ -11,17 +11,33 @@
         <result column="start_time" property="startTime"/>
         <result column="end_time" property="endTime"/>
     </resultMap>
+    <resultMap id="clazzStudentMap" type="com.fces.domain.dto.ClazzStudent">
+        <result column="id" property="id"/>
+        <result column="class_id" property="clazzId"/>
+        <result column="class_name" property="clazzName"/>
+        <result column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+    </resultMap>
     <sql id="base_column_noid">
         class_name, teacher_id, start_time, end_time
     </sql>
     <sql id="dto_column">
         c.id id, class_name, teacher_id, real_name, start_time, end_time
     </sql>
+    <sql id="clazz_student_column">
+        cs.id id, class_id, class_name, student_id, s.real_name student_name
+    </sql>
     <select id="selectAllClazz" resultMap="clazzMap">
         select <include refid="dto_column"/> from class c, teacher t where t.id=c.teacher_id;
     </select>
     <select id="selectClazzById" resultMap="clazzMap">
         select <include refid="dto_column"/> from class c, teacher t where t.id=c.teacher_id and c.id=#{id};
+    </select>
+    <select id="selectClazzesByTeacherId" resultMap="clazzMap">
+        select <include refid="dto_column"/> from class c, teacher t where t.id=c.teacher_id and teacher_id=#{teacherId};
+    </select>
+    <select id="selectClazzesByStudentId" resultMap="clazzMap">
+        select c.id id, class_name, t.id teacher_id, t.real_name real_name, start_time, end_time from class_student cs, class c, student s, teacher t where student_id=#{studentId} and cs.class_id=c.id and cs.student_id=s.id and t.id=c.teacher_id;
     </select>
     <update id="updateClazz" parameterType="com.fces.domain.Clazz">
         update class set
@@ -34,4 +50,7 @@
     <insert id="insertClazz" parameterType="com.fces.domain.Clazz" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into class(<include refid="base_column_noid"/>) values (#{clazzName}, #{teacherId}, #{startTime}, #{endTime})
     </insert>
+    <delete id="deleteClazzById">
+        delete from class where id=#{id};
+    </delete>
 </mapper>

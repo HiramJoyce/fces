@@ -41,4 +41,30 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="5242880"/>
     </bean>
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--  <bean class="cn.lzc.interceptor.CustomInterceptor"></bean>--><!--拦截所有请求-->
+
+        <!-- <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/" /><&lt;!&ndash;配置了mapping 这个 将不再起作用&ndash;&gt;
+            <bean class="cn.lzc.interceptor.CustomInterceptor"></bean>
+        </mvc:interceptor>-->
+
+        <!--<mvc:interceptor>-->
+        <!--<mvc:mapping path="/hello" />&lt;!&ndash;配置拦截hello结尾的&ndash;&gt;-->
+        <!--<bean class="cn.lzc.interceptor.CustomInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+
+        <!--登录拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/><!-- 与登录相关的请求 -->
+            <mvc:exclude-mapping path="/student/login" />
+            <mvc:exclude-mapping path="/teacher/login" />
+            <mvc:exclude-mapping path="/admin/login" />
+            <!-- 以下是静态资源 -->
+            <mvc:exclude-mapping path="/resource/**" />
+            <bean class="com.fces.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

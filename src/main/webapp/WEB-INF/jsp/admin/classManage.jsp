@@ -79,7 +79,7 @@
                         </form>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="${ctx}/logout">
                                     <i class="now-ui-icons users_single-02"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Account</span>
@@ -96,84 +96,92 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title"> 课堂管理</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                        <th>
-
-                                        </th>
-                                        <th>
-                                            课堂名称
-                                        </th>
-                                        <th>
-                                            教师
-                                        </th>
-                                        <th>
-                                            开始时间
-                                        </th>
-                                        <th>
-                                            结束时间
-                                        </th>
-                                        <th class="text-right">
-
-                                        </th>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach items="${classes}" var="clazz">
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" value="${clazz.id}"
-                                                                   type="checkbox">
-                                                            <span class="form-check-sign" style="margin-top: 10px;"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span>${clazz.clazzName}</span>
-                                                </td>
-                                                <td>
-                                                    <span>${clazz.teacherName}</span>
-                                                </td>
-                                                <td>
-                                                    <fmt:formatDate value="${clazz.startTime}" pattern="yyyy-MM-dd"/>
-                                                </td>
-                                                <td>
-                                                    <fmt:formatDate value="${clazz.endTime}" pattern="yyyy-MM-dd"/>
-                                                </td>
-                                                <td class="text-right">
-                                                    <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                                            data-original-title="Edit Task"
-                                                            onclick="window.location.href='${ctx}/admin/class/update?id=${clazz.id}'">
-                                                        <i class="now-ui-icons ui-2_settings-90"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                                            data-original-title="Remove">
-                                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
+                        <div class="card card-chart">
+                            <form id="clazz" action="${ctx}/admin/class/delete" method="post" accept-charset="UTF-8">
+                                <div class="card-header">
+                                    <h4 class="card-title"> 课堂管理</h4>
+                                    <div class="dropdown">
+                                        <button type="submit"
+                                                class="btn btn-round btn-danger btn-simple btn-icon no-caret">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </button>
+                                        <button type="button"
+                                                onclick="window.location.href='${ctx}/admin/class/update'"
+                                                class="btn btn-round btn-success btn-simple btn-icon no-caret">
+                                            <i class="now-ui-icons ui-1_simple-add"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button" rel="tooltip" title=""
-                                        class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                        data-original-title="Edit Task"
-                                        onclick="window.location.href='${ctx}/admin/class/update'">
-                                    <i class="now-ui-icons ui-1_simple-add"></i>
-                                </button>
-                            </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                            <th>
+
+                                            </th>
+                                            <th>
+                                                课堂名称
+                                            </th>
+                                            <th>
+                                                教师
+                                            </th>
+                                            <th>
+                                                开始时间
+                                            </th>
+                                            <th>
+                                                结束时间
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${classes}" var="clazz">
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" value="${clazz.id}"
+                                                                       type="checkbox" name="classId" id="${clazz.id}">
+                                                                <span class="form-check-sign"
+                                                                      style="margin-top: 10px;"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span>${clazz.clazzName}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>${clazz.teacherName}</span>
+                                                    </td>
+                                                    <td>
+                                                        <fmt:formatDate value="${clazz.startTime}"
+                                                                        pattern="yyyy-MM-dd"/>
+                                                    </td>
+                                                    <td>
+                                                        <fmt:formatDate value="${clazz.endTime}" pattern="yyyy-MM-dd"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <button type="button" rel="tooltip" title=""
+                                                                class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                                                data-original-title="Edit Task"
+                                                                onclick="window.location.href='${ctx}/admin/class/update?id=${clazz.id}'">
+                                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title=""
+                                                                class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                                                data-original-title="Remove"
+                                                                onclick="deleteClazz(${clazz.id})">
+                                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -190,19 +198,20 @@
 <script src="${ctx}/resource/twts_122_now-ui/assets/js/plugins/bootstrap-notify.js"></script>
 <script>
     $(function () {
-        if ('${message}' != null && '${message}' !== '') {
-            showNotification('${message}', 'success');
+        if ('${requestScope.message}' != null && '${requestScope.message}' !== '') {
+            showNotification('${requestScope.message}', 'success');
         }
-        if ('${error}' != null && '${error}' !== '') {
-            showNotification('${error}', 'danger');
+        if ('${requestScope.error}' != null && '${requestScope.error}' !== '') {
+            showNotification('${requestScope.error}', 'danger');
         }
     });
-    function showNotification(msg, type){
+
+    function showNotification(msg, type) {
         color = type;
         $.notify({
             icon: "now-ui-icons ui-1_bell-53",
             message: msg
-        },{
+        }, {
             type: color,
             timer: 8000,
             placement: {
@@ -210,6 +219,11 @@
                 align: 'right'
             }
         });
+    }
+
+    function deleteClazz(classId) {
+        $("#" + classId).attr("checked", "checked");
+        $("#clazz").submit();
     }
 </script>
 </body>
